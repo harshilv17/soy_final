@@ -12,7 +12,7 @@
     }
   }
   #shop-by-category-{{ section.id }} {
-    --sbc-columns: {{ section.settings.columns_desktop }};
+    --sbc-columns: {{ section.blocks.size | at_least: 1 }};
   }
   {% if section.settings.circle_background != blank %}
     #shop-by-category-{{ section.id }} {
@@ -64,7 +64,7 @@
                   {%- liquid
                     assign img_alt = display_image.alt | default: label | default: col.title | default: 'Category'
                   -%}
-                  {%- capture sbc_sizes -%}(min-width: 750px) 140px, 38vw{%- endcapture -%}
+                  {%- capture sbc_sizes -%}(min-width: 990px) 120px, (min-width: 750px) 18vw, 17vw{%- endcapture -%}
                   {{
                     display_image
                     | image_url: width: 400
@@ -100,7 +100,7 @@
   "name": "Shop by category",
   "tag": "section",
   "class": "section",
-  "max_blocks": 12,
+  "max_blocks": 5,
   "settings": [
     {
       "type": "text",
@@ -138,15 +138,6 @@
       "id": "circle_background",
       "label": "Circle background",
       "default": "#F7F3EB"
-    },
-    {
-      "type": "range",
-      "id": "columns_desktop",
-      "min": 2,
-      "max": 6,
-      "step": 1,
-      "label": "Columns on desktop",
-      "default": 4
     },
     {
       "type": "range",
@@ -198,10 +189,11 @@
     {
       "name": "Shop by category",
       "blocks": [
-        { "type": "category", "settings": { "label": "Kurtas" } },
-        { "type": "category", "settings": { "label": "Sets" } },
-        { "type": "category", "settings": { "label": "Dupattas" } },
-        { "type": "category", "settings": { "label": "Bottoms" } }
+        { "type": "category", "settings": { "label": "Kurta Sets" } },
+        { "type": "category", "settings": { "label": "Dresses" } },
+        { "type": "category", "settings": { "label": "Tops & Shirts" } },
+        { "type": "category", "settings": { "label": "Under ₹1299" } },
+        { "type": "category", "settings": { "label": "Co-ords" } }
       ]
     }
   ]

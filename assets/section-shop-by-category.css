@@ -1,15 +1,14 @@
-/* Shop by category — circular collection tiles (Shades of You) */
+/* Shop by category — circular collection tiles (one row; circles scale to column) */
 
 .shop-by-category {
-  --sbc-circle-size: clamp(10rem, 22vw, 13.6rem);
   --sbc-circle-bg: #f7f3eb;
-  --sbc-label-mt: 1.2rem;
+  --sbc-label-mt: 0.8rem;
 }
 
 .shop-by-category__inner {
   max-width: var(--page-width);
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 clamp(0.8rem, 2vw, 1.5rem);
 }
 
 .shop-by-category__heading {
@@ -28,21 +27,17 @@
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 2rem 1.25rem;
+  /* One row: column count matches category blocks (default 5) */
+  grid-template-columns: repeat(var(--sbc-columns, 5), minmax(0, 1fr));
+  gap: clamp(0.4rem, 1.5vw, 1.5rem);
   justify-items: center;
-}
-
-@media screen and (min-width: 750px) {
-  .shop-by-category__grid {
-    grid-template-columns: repeat(var(--sbc-columns, 4), minmax(0, 1fr));
-    gap: 2.4rem 1.5rem;
-  }
+  align-items: start;
 }
 
 .shop-by-category__item {
   width: 100%;
-  max-width: 16rem;
+  min-width: 0;
+  max-width: none;
   text-align: center;
 }
 
@@ -61,8 +56,11 @@
 }
 
 .shop-by-category__circle {
-  width: var(--sbc-circle-size);
-  height: var(--sbc-circle-size);
+  width: 100%;
+  max-width: clamp(4rem, 18vw, 9rem);
+  aspect-ratio: 1;
+  height: auto;
+  margin-inline: auto;
   border-radius: 50%;
   background-color: var(--sbc-circle-bg);
   display: flex;
@@ -70,6 +68,12 @@
   justify-content: center;
   overflow: hidden;
   transition: box-shadow var(--duration-short) ease, transform var(--duration-short) ease;
+}
+
+@media screen and (min-width: 990px) {
+  .shop-by-category__circle {
+    max-width: min(9rem, 100%);
+  }
 }
 
 .shop-by-category__circle img,
@@ -87,14 +91,25 @@
 }
 
 .shop-by-category__label {
+  display: block;
   margin-top: var(--sbc-label-mt);
+  padding: 0 0.1rem;
   font-family: var(--font-body-family);
   font-style: var(--font-body-style);
   font-weight: 600;
-  font-size: max(1.2rem, calc(var(--font-body-scale) * 1.14rem));
-  letter-spacing: 0.08em;
+  font-size: clamp(0.62rem, 2.5vw, 1.05rem);
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  line-height: 1.3;
+  line-height: 1.25;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+@media screen and (min-width: 750px) {
+  .shop-by-category__label {
+    letter-spacing: 0.06em;
+    font-size: clamp(0.85rem, 1.1vw, 1.05rem);
+  }
 }
 
 .shop-by-category__link--disabled {
