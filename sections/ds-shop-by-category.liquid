@@ -1,0 +1,209 @@
+{{ 'section-shop-by-category.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+  #shop-by-category-{{ section.id }} {
+    --sbc-columns: {{ section.settings.columns_desktop }};
+  }
+  {% if section.settings.circle_background != blank %}
+    #shop-by-category-{{ section.id }} {
+      --sbc-circle-bg: {{ section.settings.circle_background }};
+    }
+  {% endif %}
+{%- endstyle -%}
+
+<div
+  id="shop-by-category-{{ section.id }}"
+  class="shop-by-category color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding"
+>
+  <div class="shop-by-category__inner">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="shop-by-category__heading {{ section.settings.heading_size }}">
+        {{ section.settings.heading | escape }}
+      </h2>
+    {%- endif -%}
+
+    <ul class="shop-by-category__grid" role="list">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign col = block.settings.collection
+          assign display_image = block.settings.image
+          if display_image == blank and col != blank and col.featured_image
+            assign display_image = col.featured_image
+          endif
+          assign label = block.settings.label
+          if label == blank and col != blank
+            assign label = col.title
+          endif
+          assign link_url = ''
+          if col != blank
+            assign link_url = col.url
+          endif
+        -%}
+        <li class="shop-by-category__item" {{ block.shopify_attributes }}>
+          {%- if link_url != blank -%}
+            <a
+              class="shop-by-category__link"
+              href="{{ link_url }}"
+              aria-label="{{ label | default: col.title | default: 'Category' | escape }}"
+            >
+          {%- else -%}
+            <div class="shop-by-category__link shop-by-category__link--disabled" aria-disabled="true">
+          {%- endif -%}
+              <span class="shop-by-category__circle">
+                {%- if display_image != blank -%}
+                  {%- liquid
+                    assign img_alt = display_image.alt | default: label | default: col.title | default: 'Category'
+                  -%}
+                  {%- capture sbc_sizes -%}(min-width: 750px) 140px, 38vw{%- endcapture -%}
+                  {{
+                    display_image
+                    | image_url: width: 400
+                    | image_tag:
+                      loading: 'lazy',
+                      sizes: sbc_sizes,
+                      widths: '100, 150, 200, 300, 400',
+                      alt: img_alt,
+                      class: 'shop-by-category__img'
+                  }}
+                {%- else -%}
+                  <span class="shop-by-category__placeholder" aria-hidden="true">
+                    {{- 'image' | placeholder_svg_tag: 'placeholder-svg' -}}
+                  </span>
+                {%- endif -%}
+              </span>
+              {%- if label != blank -%}
+                <span class="shop-by-category__label">{{ label | escape }}</span>
+              {%- endif -%}
+          {%- if link_url != blank -%}
+            </a>
+          {%- else -%}
+            </div>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Shop by category",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 12,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Shop by category"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading size",
+      "options": [
+        { "value": "h3", "label": "Small" },
+        { "value": "h2", "label": "Medium" },
+        { "value": "h1", "label": "Large" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "options": [
+        { "value": "scheme-1", "label": "Light (cream)" },
+        { "value": "scheme-2", "label": "Secondary (beige)" },
+        { "value": "scheme-3", "label": "Atelier (dark)" },
+        { "value": "scheme-4", "label": "Accent (copper)" },
+        { "value": "background-1", "label": "Background 1" },
+        { "value": "background-2", "label": "Background 2" }
+      ],
+      "default": "scheme-1"
+    },
+    {
+      "type": "color",
+      "id": "circle_background",
+      "label": "Circle background",
+      "default": "#F7F3EB"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "label": "Columns on desktop",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "Optional. If empty, the collection’s featured image is used when a collection is selected."
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Category"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop by category",
+      "blocks": [
+        { "type": "category", "settings": { "label": "Kurtas" } },
+        { "type": "category", "settings": { "label": "Sets" } },
+        { "type": "category", "settings": { "label": "Dupattas" } },
+        { "type": "category", "settings": { "label": "Bottoms" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
