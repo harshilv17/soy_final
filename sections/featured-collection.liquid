@@ -36,6 +36,19 @@
 {%- endstyle -%}
 
 {%- liquid
+  assign editorial_heading = false
+  if section.settings.heading_eyebrow != blank or section.settings.heading_script != blank
+    assign editorial_heading = true
+  endif
+-%}
+{%- if editorial_heading -%}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  {{ 'section-featured-collection-editorial.css' | asset_url | stylesheet_tag }}
+{%- endif -%}
+
+{%- liquid
   assign products_to_display = section.settings.collection.all_products_count
 
   if section.settings.collection.all_products_count > section.settings.products_to_show
@@ -56,9 +69,18 @@
 -%}
 
 <div class="color-scheme-{{ section.id }} color-{{ section.settings.color_scheme }} isolate gradient">
-  <div class="collection section-{{ section.id }}-padding{% if section.settings.full_width %} collection--full-width{% endif %}">
+  <div class="collection section-{{ section.id }}-padding{% if editorial_heading %} featured-collection--editorial-heading{% endif %}{% if section.settings.full_width %} collection--full-width{% endif %}">
     <div class="collection__title title-wrapper title-wrapper--no-top-margin page-width{% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% endif %}{% if show_desktop_slider %} collection__title--desktop-slider{% endif %}">
-      {%- if section.settings.title != blank -%}
+      {%- if editorial_heading -%}
+        <h2 class="featured-collection__heading-stack">
+          {%- if section.settings.heading_eyebrow != blank -%}
+            <span class="featured-collection__eyebrow title {{ section.settings.heading_size }}">{{ section.settings.heading_eyebrow | escape }}</span>
+          {%- endif -%}
+          {%- if section.settings.heading_script != blank -%}
+            <span class="featured-collection__script">{{ section.settings.heading_script | escape }}</span>
+          {%- endif -%}
+        </h2>
+      {%- elsif section.settings.title != blank -%}
         <h2 class="title {{ section.settings.heading_size }}">{{ section.settings.title | escape }}</h2>
       {%- endif -%}
       {%- if section.settings.description != blank
@@ -167,7 +189,22 @@
       "type": "text",
       "id": "title",
       "default": "Featured collection",
-      "label": "t:sections.featured-collection.settings.title.label"
+      "label": "t:sections.featured-collection.settings.title.label",
+      "info": "Used when editorial heading is empty. If eyebrow or script line is set, those show instead."
+    },
+    {
+      "type": "text",
+      "id": "heading_eyebrow",
+      "label": "Heading line (uppercase)",
+      "default": "",
+      "info": "e.g. Customer favourites — serif, uppercase. Leave blank to hide."
+    },
+    {
+      "type": "text",
+      "id": "heading_script",
+      "label": "Script line (below heading)",
+      "default": "",
+      "info": "e.g. Most Loved — decorative script (Great Vibes). Sweet Pattern can be added via custom CSS."
     },
     {
       "type": "select",

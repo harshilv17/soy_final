@@ -1,0 +1,68 @@
+/**
+ * Featured collection — editorial heading (uppercase + script) + Montserrat card type
+ * Script font: Great Vibes (free). Replace with licensed Sweet Pattern via Theme Editor custom CSS if needed.
+ */
+
+.featured-collection__heading-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.2rem;
+  margin: 0;
+  width: 100%;
+}
+
+.featured-collection__eyebrow {
+  display: block;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-family: var(--font-heading-family);
+  font-style: var(--font-heading-style);
+  font-weight: var(--font-heading-weight);
+  color: rgb(var(--color-foreground));
+}
+
+.featured-collection__script {
+  display: block;
+  margin: 0.2rem 0 0;
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(2.75rem, 6vw, 4.2rem);
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: rgb(var(--color-foreground));
+}
+
+/* Product cards — Montserrat, lighter title / bold price */
+.featured-collection--editorial-heading .card__heading,
+.featured-collection--editorial-heading .card__heading .full-unstyled-link {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.featured-collection--editorial-heading .card-information,
+.featured-collection--editorial-heading .card-information .caption {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.featured-collection--editorial-heading .card-information .price,
+.featured-collection--editorial-heading .card-information .price-item {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.featured-collection--editorial-heading .card__media {
+  border-radius: 0.6rem;
+  overflow: hidden;
+}
+
+.featured-collection--editorial-heading .card__inner {
+  border-radius: 0.6rem;
+  overflow: hidden;
+}
