@@ -63,8 +63,8 @@
       "name": "t:sections.featured-collection.presets.name",
       "settings": {
         "title": "",
-        "heading_eyebrow": "Customer Favourites",
-        "heading_script": "Most Loved",
+        "heading_eyebrow": "CUSTOMER FAVOURITES",
+        "heading_script": "Most loved",
         "heading_size": "h1",
         "description": "",
         "show_description": false,
