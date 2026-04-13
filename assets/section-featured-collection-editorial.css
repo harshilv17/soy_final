@@ -27,6 +27,7 @@
   font-size: clamp(1.15rem, 2.6vw, 2.35rem);
 }
 
+/* Dark cream — distinct from eyebrow (foreground / coffee) */
 .featured-collection__script {
   display: inline;
   margin: 0;
@@ -37,7 +38,7 @@
   line-height: 1;
   letter-spacing: 0.02em;
   text-transform: none;
-  color: rgb(var(--color-foreground));
+  color: #6f5e52;
   white-space: nowrap;
   flex-shrink: 0;
 }
