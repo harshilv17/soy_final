@@ -16,17 +16,17 @@
           "type": "heading",
           "settings": {
             "heading": "Shades Of You",
-            "heading_size": "h1"
+            "heading_size": "hxl"
           }
         },
         "text_d9mrER": {
           "type": "text",
           "settings": {
-            "text": "Give customers details about the banner image(s) or content on the template.",
+            "text": "Explore the elegant things",
             "text_style": "body"
           }
         },
-        "buttons_wExVUw": {
+        "buttons_UiLeKa": {
           "type": "buttons",
           "settings": {
             "button_label_1": "Button label",
@@ -41,52 +41,52 @@
       "block_order": [
         "heading_wdX4cN",
         "text_d9mrER",
-        "buttons_wExVUw"
+        "buttons_UiLeKa"
       ],
       "name": "t:sections.image-banner.presets.name",
       "settings": {
-        "image": "shopify://shop_images/gemini-2.5-flash-image_Place_this_model_in_the_centre_of_the_background_-_don_t_change_anything_else.-0.jpg",
+        "image": "shopify://shop_images/Untitled_design.svg",
         "image_overlay_opacity": 0,
-        "image_height": "medium",
-        "desktop_content_position": "bottom-center",
+        "image_height": "large",
+        "desktop_content_position": "middle-left",
         "show_text_box": false,
-        "desktop_content_alignment": "center",
-        "color_scheme": "",
+        "desktop_content_alignment": "left",
+        "color_scheme": "scheme-4",
         "image_behavior": "none",
         "mobile_content_alignment": "center",
         "stack_images_on_mobile": true,
-        "show_text_below": true
+        "show_text_below": false
       }
     },
     "featured_collection_P9AGLc": {
       "type": "featured-collection",
       "name": "t:sections.featured-collection.presets.name",
       "settings": {
-        "title": "Featured collection",
+        "title": "Most Loved",
         "heading_size": "h1",
         "description": "",
         "show_description": false,
         "description_style": "body",
         "color_scheme": "background-1",
-        "collection": "frontpage",
-        "products_to_show": 4,
+        "collection": "best-sellers",
+        "products_to_show": 8,
         "columns_desktop": 4,
-        "product_cards_stretch": false,
+        "product_cards_stretch": true,
         "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "enable_desktop_slider": false,
+        "show_view_all": false,
+        "view_all_style": "link",
+        "enable_desktop_slider": true,
         "cards_color_scheme": "background-1",
         "image_ratio": "adapt",
         "show_secondary_image": false,
         "show_vendor": false,
         "show_rating": false,
         "enable_quick_add": false,
-        "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "padding_top": 36,
-        "padding_bottom": 36,
-        "custom_colors_background": "#fdf9f1",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 28,
+        "padding_bottom": 24,
+        "custom_colors_background": "#c28e6b",
         "custom_gradient_background": "",
         "custom_colors_text": "#3b2314",
         "custom_colors_solid_button_background": "#3b2314",
