@@ -47,7 +47,7 @@
       "settings": {
         "image": "shopify://shop_images/Untitled_design.svg",
         "image_overlay_opacity": 0,
-        "image_height": "large",
+        "image_height": "medium",
         "desktop_content_position": "middle-left",
         "show_text_box": false,
         "desktop_content_alignment": "left",
@@ -99,6 +99,7 @@
         "sbc_kurta_sets": {
           "type": "category",
           "settings": {
+            "image": "shopify://shop_images/1_3d9d07e7-2de6-47c1-8e38-71c3993eeb9f.svg",
             "label": "Kurta Sets",
             "collection": ""
           }
@@ -106,6 +107,7 @@
         "sbc_dresses": {
           "type": "category",
           "settings": {
+            "image": "shopify://shop_images/2_be0ed0cc-5465-46f5-88a2-7a6b75df26d3.svg",
             "label": "Dresses",
             "collection": ""
           }
@@ -148,47 +150,6 @@
         "padding_bottom": 36
       }
     },
-    "collection_list_GjBdXt": {
-      "type": "collection-list",
-      "blocks": {
-        "featured_collection_L3X7km": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "kurta-set"
-          }
-        },
-        "featured_collection_mYjwfC": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "dresses"
-          }
-        },
-        "featured_collection_VBCFTy": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": ""
-          }
-        }
-      },
-      "block_order": [
-        "featured_collection_L3X7km",
-        "featured_collection_mYjwfC",
-        "featured_collection_VBCFTy"
-      ],
-      "name": "t:sections.collection-list.presets.name",
-      "settings": {
-        "title": "Collections",
-        "heading_size": "h1",
-        "image_ratio": "portrait",
-        "columns_desktop": 6,
-        "color_scheme": "",
-        "show_view_all": false,
-        "columns_mobile": "2",
-        "swipe_on_mobile": true,
-        "padding_top": 40,
-        "padding_bottom": 40
-      }
-    },
     "contact_form_Exj8J9": {
       "type": "contact-form",
       "name": "t:sections.contact-form.presets.name",
@@ -211,7 +172,6 @@
     "image_banner_LVmC3A",
     "featured_collection_P9AGLc",
     "shop_by_category_soy",
-    "collection_list_GjBdXt",
     "contact_form_Exj8J9"
   ]
 }
