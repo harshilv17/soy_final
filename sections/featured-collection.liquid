@@ -74,7 +74,7 @@
       {%- if editorial_heading -%}
         <h2 class="featured-collection__heading-stack">
           {%- if section.settings.heading_eyebrow != blank -%}
-            <span class="featured-collection__eyebrow title {{ section.settings.heading_size }}">{{ section.settings.heading_eyebrow | escape }}</span>
+            <span class="featured-collection__eyebrow">{{ section.settings.heading_eyebrow | escape }}</span>
           {%- endif -%}
           {%- if section.settings.heading_script != blank -%}
             <span class="featured-collection__script">{{ section.settings.heading_script | escape }}</span>

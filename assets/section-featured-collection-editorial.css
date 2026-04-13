@@ -1,5 +1,5 @@
 /**
- * Featured collection — editorial heading (one line: serif label + script) + Montserrat cards
+ * Featured collection — editorial heading (one line: Montserrat label + script) + Montserrat cards
  */
 
 .featured-collection__heading-stack {
@@ -17,11 +17,11 @@
 .featured-collection__heading-stack .featured-collection__eyebrow {
   display: inline;
   margin: 0;
-  text-transform: none;
-  letter-spacing: 0.02em;
-  font-family: var(--font-heading-family);
+  font-family: 'Montserrat', sans-serif;
   font-style: normal;
-  font-weight: var(--font-heading-weight);
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0.03em;
   color: rgb(var(--color-foreground));
   white-space: nowrap;
   font-size: clamp(1.15rem, 2.6vw, 2.35rem);
