@@ -1,0 +1,155 @@
+/* Shades of You — Global Design System */
+
+:root {
+  --soy-brown: 59, 35, 20; /* #3b2314 */
+  --soy-terracotta: 194, 142, 107; /* #c28e6b */
+  --soy-terracotta-hover: #a67352;
+  --soy-cream-light: #fdf9f1;
+  --soy-cream-warm: #f7f3eb;
+  --soy-beige: #efe8dc;
+  --soy-taupe: #e8e0d4;
+
+  --soy-border: rgba(59, 35, 20, 0.14);
+  --soy-line: rgba(60, 42, 33, 0.12);
+  --soy-soft-overlay: rgba(196, 139, 108, 0.12);
+  --soy-muted-text: #3b2314cf;
+
+  --soy-radius-button: 14px;
+  --soy-radius-card: 4px;
+  --soy-radius-input: 4px;
+  --soy-radius-story: 6px;
+  --soy-radius-popover: 14px;
+
+  --soy-card-shadow: 0 2px 12px rgba(28, 28, 23, 0.06);
+  --soy-header-shadow: 0 4px 40px rgba(28, 28, 23, 0.04);
+}
+
+/* Typography system */
+body,
+p,
+.rte,
+.caption {
+  font-family: var(--font-body-family);
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h0,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5 {
+  font-family: var(--font-heading-family);
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.25;
+}
+
+.display-serif {
+  font-family: 'Noto Serif', Georgia, serif;
+}
+
+.script,
+.font-script {
+  font-family: 'Great Vibes', cursive;
+}
+
+/* Page gutters: 16 mobile / 40 desktop */
+.page-width {
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+}
+
+@media screen and (min-width: 750px) {
+  .page-width {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
+/* Radius alignment */
+.button,
+.button--secondary {
+  border-radius: var(--soy-radius-button);
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
+.card,
+.card__inner {
+  border-radius: var(--soy-radius-card);
+}
+
+input,
+textarea,
+select,
+.field__input {
+  border-radius: var(--soy-radius-input);
+}
+
+.shopify-section-header-sticky,
+.header-wrapper {
+  box-shadow: var(--soy-header-shadow);
+}
+
+.shopify-section-header-sticky {
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+}
+
+/* Utility tokens in use */
+.text-muted,
+.card-information .caption,
+.price__regular .price-item {
+  color: var(--soy-muted-text);
+}
+
+/* Unified hover effects */
+a,
+.button,
+.card,
+.card__inner,
+.multicolumn-card,
+.collection-list__item .card-wrapper {
+  transition: transform 0.25s ease-out, box-shadow 0.25s ease-out, color 0.25s ease-out, background-color 0.25s ease-out;
+}
+
+.button:hover,
+.card:hover,
+.card-wrapper:hover .card,
+.multicolumn-card:hover {
+  transform: translateY(-4px) scale(1.03);
+}
+
+.card,
+.multicolumn-card,
+.collection-list .card-wrapper .card {
+  box-shadow: var(--soy-card-shadow);
+  border: 1px solid var(--soy-border);
+}
+
+.link,
+a:not(.button):not(.full-unstyled-link):hover {
+  color: rgb(var(--soy-terracotta));
+}
+
+.button:hover,
+.button--secondary:hover {
+  background-color: var(--soy-terracotta-hover);
+  border-color: var(--soy-terracotta-hover);
+}
+
+.badge {
+  border-radius: 40px;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
