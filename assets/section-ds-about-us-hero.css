@@ -1,0 +1,88 @@
+/* Shades of You — About hero: full-bleed background image + centered copy + sharp CTA */
+
+.ds-about-us-hero {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--ds-about-min-height, 55vh);
+}
+
+.ds-about-us-hero__bg {
+  position: absolute;
+  inset: 0;
+  background-color: #f7f3eb;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+.ds-about-us-hero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: #fdf9f1;
+  pointer-events: none;
+}
+
+.ds-about-us-hero__inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 72rem;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.ds-about-us-hero__heading {
+  font-family: var(--font-body-family);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: clamp(1.4rem, 2.4vw, 1.8rem);
+  line-height: 1.35;
+  color: rgb(var(--color-foreground));
+}
+
+.ds-about-us-hero__subtext {
+  margin: 0;
+  max-width: 44rem;
+  font-size: 1.45rem;
+  line-height: 1.65;
+  color: rgba(var(--color-foreground), 0.88);
+}
+
+.ds-about-us-hero__subtext p {
+  margin: 0;
+}
+
+.ds-about-us-hero__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.8rem;
+  padding: 1.5rem 4rem;
+  border-radius: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  background: #3b2314;
+  color: #fdf9f1;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.ds-about-us-hero__btn:hover {
+  background: #2a180f;
+  color: #fdf9f1;
+}

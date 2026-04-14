@@ -1,0 +1,216 @@
+/* Shades of You — editorial review carousel (bordered card, image + quote) */
+
+.ds-review-carousel {
+  --ds-review-border: #3b2314;
+  --ds-review-card-bg: #fdf9f1;
+  --ds-review-fg: #3b2314;
+}
+
+.ds-review-carousel__title {
+  font-family: var(--font-body-family);
+  text-align: center;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 0 0 2.4rem;
+  color: rgb(var(--color-foreground));
+}
+
+@media screen and (min-width: 750px) {
+  .ds-review-carousel__title {
+    margin-bottom: 3.2rem;
+  }
+}
+
+.ds-review-carousel__card-wrap {
+  position: relative;
+  max-width: 110rem;
+  margin: 0 auto;
+}
+
+.ds-review-carousel__card {
+  display: grid;
+  grid-template-columns: 1fr;
+  border: 1px solid var(--ds-review-border);
+  background: var(--ds-review-card-bg);
+  color: var(--ds-review-fg);
+  position: relative;
+  overflow: hidden;
+}
+
+@media screen and (min-width: 750px) {
+  .ds-review-carousel__card {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    min-height: 36rem;
+  }
+}
+
+.ds-review-carousel__patterns {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.14;
+}
+
+.ds-review-carousel__pattern {
+  position: absolute;
+  width: 12rem;
+  height: 12rem;
+  border: 1px solid var(--ds-review-border);
+  border-radius: 50%;
+}
+
+.ds-review-carousel__pattern--tl {
+  top: -4rem;
+  left: -4rem;
+}
+
+.ds-review-carousel__pattern--bl {
+  bottom: -5rem;
+  left: -3rem;
+  width: 10rem;
+  height: 10rem;
+}
+
+.ds-review-carousel__media,
+.ds-review-carousel__body {
+  position: relative;
+  z-index: 1;
+}
+
+.ds-review-carousel__media {
+  min-height: 28rem;
+}
+
+@media screen and (min-width: 750px) {
+  .ds-review-carousel__media {
+    min-height: 100%;
+  }
+}
+
+.ds-review-carousel__media-inner {
+  width: 100%;
+  height: 100%;
+  min-height: 28rem;
+}
+
+@media screen and (min-width: 750px) {
+  .ds-review-carousel__media-inner {
+    min-height: 36rem;
+  }
+}
+
+.ds-review-carousel__media-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ds-review-carousel__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2.4rem 2rem 3rem;
+  gap: 1.2rem;
+}
+
+@media screen and (min-width: 750px) {
+  .ds-review-carousel__body {
+    padding: 3.2rem 3.6rem 4rem;
+  }
+}
+
+.ds-review-carousel__stars {
+  display: flex;
+  justify-content: center;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 1.6rem;
+  line-height: 1;
+  color: var(--ds-review-fg);
+}
+
+.ds-review-carousel__stars li {
+  letter-spacing: 0;
+}
+
+.ds-review-carousel__headline {
+  font-family: var(--font-body-family);
+  font-size: clamp(1.6rem, 2.2vw, 2rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0;
+  line-height: 1.25;
+}
+
+.ds-review-carousel__text {
+  margin: 0;
+  max-width: 42rem;
+  font-size: 1.45rem;
+  line-height: 1.65;
+}
+
+.ds-review-carousel__text p {
+  margin: 0;
+}
+
+.ds-review-carousel__author-name {
+  font-family: var(--font-body-family);
+  font-size: 1.35rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0.8rem 0 0;
+}
+
+.ds-review-carousel__author-title {
+  font-family: var(--font-body-family);
+  font-size: 1.15rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin: 0.4rem 0 0;
+  opacity: 0.85;
+}
+
+/* Slider: circular nav, hide counter */
+.ds-review-carousel__slider slider-component .slider-buttons {
+  margin-top: 1.6rem;
+  gap: 1rem;
+}
+
+.ds-review-carousel__slider slider-component .slider-counter {
+  display: none !important;
+}
+
+.ds-review-carousel__slider .slider-button {
+  border-radius: 50%;
+  border: 1px solid var(--ds-review-border);
+  background: transparent;
+  color: var(--ds-review-fg);
+  width: 4.4rem;
+  height: 4.4rem;
+}
+
+.ds-review-carousel__slider .slider-button:hover:not([disabled]) {
+  background: rgba(59, 35, 20, 0.06);
+}
+
+.ds-review-carousel__slider .slider-button[disabled] {
+  opacity: 0.35;
+}
+
+.ds-review-carousel__slider ul.slider {
+  margin-bottom: 0;
+}
+
+.ds-review-carousel__slide {
+  width: 100%;
+}

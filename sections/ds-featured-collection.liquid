@@ -54,6 +54,13 @@
     assign show_desktop_slider = true
   endif
 -%}
+{%- if show_mobile_slider or show_desktop_slider -%}
+  {%- style -%}
+    #shopify-section-{{ section.id }} .slider-buttons {
+      display: none !important;
+    }
+  {%- endstyle -%}
+{%- endif -%}
 
 <div class="color-scheme-{{ section.id }} color-{{ section.settings.color_scheme }} isolate gradient">
   <div class="collection section-{{ section.id }}-padding{% if section.settings.full_width %} collection--full-width{% endif %}">

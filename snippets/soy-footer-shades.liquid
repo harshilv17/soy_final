@@ -1,0 +1,214 @@
+{% comment %}
+  Shades of You — two-column footer (contact, newsletter, social | sitemap, quick links, address).
+  @param section {Object} Footer section object
+{% endcomment %}
+
+{%- liquid
+  assign show_ig = false
+  if settings.social_instagram_link != blank and section.settings.shades_show_theme_social
+    assign show_ig = true
+  endif
+  assign show_li = false
+  if section.settings.shades_linkedin_url != blank
+    assign show_li = true
+  endif
+  assign show_social_block = false
+  if show_ig or show_li
+    assign show_social_block = true
+  endif
+-%}
+
+{%- if section.settings.shades_show_pattern -%}
+  <div class="footer__shades-pattern" aria-hidden="true"></div>
+{%- endif -%}
+
+<div class="footer__shades-main">
+  <div class="footer__shades-grid">
+    <div class="footer__shades-left">
+      {%- if section.settings.shades_heading_contact != blank -%}
+        <h2 class="footer__shades-heading">{{ section.settings.shades_heading_contact | escape }}</h2>
+      {%- endif -%}
+
+      {%- if section.settings.shades_phone != blank or section.settings.shades_email != blank -%}
+        <ul class="footer__shades-contact">
+          {%- if section.settings.shades_phone != blank -%}
+            <li>
+              {%- if section.settings.shades_whatsapp_url != blank -%}
+                <a href="{{ section.settings.shades_whatsapp_url }}" rel="noopener noreferrer" target="_blank">
+                  <span class="footer__shades-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                    </svg>
+                  </span>
+                  {{- section.settings.shades_phone | escape -}}
+                </a>
+              {%- else -%}
+                <a href="tel:{{ section.settings.shades_phone | replace: ' ', '' | replace: '-', '' }}">
+                  <span class="footer__shades-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V21c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" fill="currentColor"/>
+                    </svg>
+                  </span>
+                  {{- section.settings.shades_phone | escape -}}
+                </a>
+              {%- endif -%}
+            </li>
+          {%- endif -%}
+          {%- if section.settings.shades_email != blank -%}
+            <li>
+              <a href="mailto:{{ section.settings.shades_email | strip }}">
+                <span class="footer__shades-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" fill="currentColor"/>
+                  </svg>
+                </span>
+                {{- section.settings.shades_email | escape -}}
+              </a>
+            </li>
+          {%- endif -%}
+        </ul>
+      {%- endif -%}
+
+      {%- if section.settings.shades_newsletter_heading != blank -%}
+        <div class="footer__shades-newsletter-block">
+          <p class="footer__shades-newsletter-heading">{{ section.settings.shades_newsletter_heading | escape }}</p>
+          {%- form 'customer', id: 'ContactFooterShades', class: 'footer__shades-newsletter' -%}
+            <input type="hidden" name="contact[tags]" value="newsletter">
+            <div class="footer__shades-newsletter-field">
+              <label class="visually-hidden" for="NewsletterShades-{{ section.id }}">{{ 'newsletter.label' | t }}</label>
+              <input
+                id="NewsletterShades-{{ section.id }}"
+                type="email"
+                name="contact[email]"
+                class="footer__shades-input"
+                value="{{ form.email }}"
+                autocorrect="off"
+                autocapitalize="off"
+                autocomplete="email"
+                placeholder="{{ section.settings.shades_newsletter_placeholder | escape }}"
+                required
+                {% if form.errors %}
+                  autofocus
+                  aria-invalid="true"
+                  aria-describedby="ContactFooterShades-error"
+                {% elsif form.posted_successfully? %}
+                  aria-describedby="ContactFooterShades-success"
+                {% endif %}
+              >
+              <button type="submit" class="footer__shades-newsletter-submit" name="commit" aria-label="{{ 'newsletter.button_label' | t }}">
+                {% render 'icon-arrow' %}
+              </button>
+            </div>
+            {%- if form.errors -%}
+              <small class="newsletter-form__message form__message" id="ContactFooterShades-error">
+                {{- form.errors.translated_fields.email | capitalize }}
+                {{ form.errors.messages.email -}}
+              </small>
+            {%- endif -%}
+            {%- if form.posted_successfully? -%}
+              <h3 class="newsletter-form__message newsletter-form__message--success form__message" id="ContactFooterShades-success" tabindex="-1">
+                {{- 'newsletter.success' | t }}
+              </h3>
+            {%- endif -%}
+          {%- endform -%}
+        </div>
+      {%- endif -%}
+
+      {%- if show_social_block -%}
+        <div class="footer__shades-social-wrap">
+          {%- if section.settings.shades_heading_social != blank -%}
+            <h2 class="footer__shades-heading">{{ section.settings.shades_heading_social | escape }}</h2>
+          {%- else -%}
+            <h2 class="footer__shades-heading visually-hidden">Social</h2>
+          {%- endif -%}
+          <ul class="footer__shades-social-list" role="list">
+          {%- if show_ig -%}
+            <li>
+              <a href="{{ settings.social_instagram_link }}" rel="noopener noreferrer" target="_blank">
+                <span class="svg-wrapper">{{ 'icon-instagram.svg' | inline_asset_content }}</span>
+                <span class="visually-hidden">{{ 'general.social.links.instagram' | t }}</span>
+              </a>
+            </li>
+          {%- endif -%}
+          {%- if show_li -%}
+            <li>
+              <a href="{{ section.settings.shades_linkedin_url }}" rel="noopener noreferrer" target="_blank">
+                <span class="svg-wrapper" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                  </svg>
+                </span>
+                <span class="visually-hidden">LinkedIn</span>
+              </a>
+            </li>
+          {%- endif -%}
+          </ul>
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="footer__shades-right">
+      {%- assign shades_sitemap = section.settings.shades_menu_sitemap -%}
+      {%- if shades_sitemap != blank and shades_sitemap.links.size > 0 -%}
+        {%- if section.settings.shades_heading_sitemap != blank -%}
+          <h2 class="footer__shades-heading">{{ section.settings.shades_heading_sitemap | escape }}</h2>
+        {%- endif -%}
+        <ul class="footer__shades-sitemap-row" role="list">
+          {%- for link in shades_sitemap.links -%}
+            <li>
+              <a href="{{ link.url }}">{{ link.title | escape }}</a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+
+      {%- if section.settings.shades_menu_quick_handle != blank -%}
+        {%- assign shades_quick = linklists[section.settings.shades_menu_quick_handle] -%}
+        {%- if shades_quick.links.size > 0 -%}
+          {%- if section.settings.shades_heading_quick != blank -%}
+            <h2 class="footer__shades-heading">{{ section.settings.shades_heading_quick | escape }}</h2>
+          {%- endif -%}
+          <ul class="footer__shades-quicklinks" role="list">
+            {%- for link in shades_quick.links -%}
+              <li>
+                <a href="{{ link.url }}">{{ link.title | escape }}</a>
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+      {%- endif -%}
+
+      {%- if section.settings.shades_address != blank -%}
+        <div>
+          <h2 class="footer__shades-heading footer__shades-reach-head">
+            <span class="footer__shades-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+              </svg>
+            </span>
+            {%- if section.settings.shades_heading_reach != blank -%}
+              {{- section.settings.shades_heading_reach | escape -}}
+            {%- else -%}
+              REACH US
+            {%- endif -%}
+          </h2>
+          <div class="footer__shades-address rte">{{ section.settings.shades_address }}</div>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{%- if section.settings.shades_show_whatsapp_float and section.settings.shades_whatsapp_float_url != blank -%}
+  <a
+    href="{{ section.settings.shades_whatsapp_float_url }}"
+    class="footer__shades-whatsapp-float"
+    rel="noopener noreferrer"
+    target="_blank"
+    aria-label="WhatsApp"
+  >
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+    </svg>
+  </a>
+{%- endif -%}

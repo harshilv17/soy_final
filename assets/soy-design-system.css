@@ -1,0 +1,116 @@
+/* Shades of You — global design system */
+
+:root {
+  --soy-brown: #3b2314;
+  --soy-terracotta: #c28e6b;
+  --soy-terracotta-hover: #a67352;
+  --soy-cream-light: #fdf9f1;
+  --soy-cream-warm: #f7f3eb;
+  --soy-beige: #efe8dc;
+  --soy-taupe: #e8e0d4;
+
+  --soy-border: rgba(59, 35, 20, 0.14);
+  --soy-divider: rgba(60, 42, 33, 0.12);
+  --soy-peach-overlay: rgba(196, 139, 108, 0.12);
+  --soy-text-muted: #3b2314cf;
+
+  --soy-card-shadow: 0 2px 12px rgba(28, 28, 23, 0.06);
+  --soy-header-shadow: 0 4px 40px rgba(28, 28, 23, 0.04);
+  --soy-transition: 0.25s ease-out;
+}
+
+body {
+  color: rgb(var(--color-foreground));
+  background: rgb(var(--color-background));
+  font-family: 'Manrope', system-ui, sans-serif;
+}
+
+/* Page gutters */
+.page-width,
+.page-width-desktop {
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+}
+
+@media screen and (min-width: 990px) {
+  .page-width,
+  .page-width-desktop {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
+/* Typography scale */
+h1, .h1 { font-size: 3rem; line-height: 1.25; font-weight: 400; letter-spacing: 0; }
+h2, .h2 { font-size: 3.2rem; line-height: 1.25; font-weight: 400; letter-spacing: 0; }
+h3, .h3 { font-size: 2.8rem; line-height: 1.25; font-weight: 400; letter-spacing: 0; }
+h4, .h4 { font-size: 2.6rem; line-height: 1.25; font-weight: 400; letter-spacing: 0; }
+p, .rte p { font-size: 1.4rem; line-height: 1.4; font-weight: 400; letter-spacing: 0; }
+
+.caption,
+small,
+.small-caption {
+  font-size: 1.1rem;
+  line-height: 1.4;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+/* Buttons / inputs / cards */
+.button, .shopify-payment-button__button,
+.button--secondary, .button--tertiary {
+  border-radius: 14px;
+  letter-spacing: 0.1em;
+  font-size: 1.2rem;
+  font-weight: 600;
+  transition: transform var(--soy-transition), box-shadow var(--soy-transition), background-color var(--soy-transition);
+}
+
+.field__input,
+.select__select,
+textarea {
+  border-radius: 4px;
+}
+
+.card,
+.product-card-wrapper .card,
+.collection-card-wrapper .card {
+  border-radius: 4px;
+  box-shadow: var(--soy-card-shadow);
+}
+
+.badge {
+  border-radius: 40px;
+}
+
+/* Links + hovers */
+a,
+.link,
+.full-unstyled-link {
+  transition: color var(--soy-transition), opacity var(--soy-transition), transform var(--soy-transition);
+}
+
+a:hover,
+.link:hover {
+  color: var(--soy-terracotta-hover);
+}
+
+.card:hover,
+.product-card-wrapper:hover .card,
+.collection-card-wrapper:hover .card {
+  transform: translateY(-4px);
+}
+
+.shopify-section-header-sticky,
+header.header {
+  box-shadow: var(--soy-header-shadow);
+  backdrop-filter: blur(20px);
+}
+
+hr,
+.section-divider,
+.collection__description,
+.border,
+.card__content {
+  border-color: var(--soy-divider);
+}

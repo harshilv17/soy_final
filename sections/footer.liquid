@@ -16,6 +16,10 @@
 <noscript>{{ 'ds-disclosure.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'component-card.css' | asset_url | stylesheet_tag }}</noscript>
 
+{%- if section.settings.layout_style == 'shades' -%}
+  {{ 'section-footer-shades.css' | asset_url | stylesheet_tag }}
+{%- endif -%}
+
 {%- style -%}
   .footer {
     margin-top: {{ section.settings.margin_top | times: 0.75 | round: 0 }}px;
@@ -38,7 +42,9 @@
   }
 {%- endstyle -%}
 
-<footer class="footer color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+<footer
+  class="footer color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding{% if section.settings.layout_style == 'shades' %} footer--shades{% endif %}"
+>
   {%- liquid
     assign has_social_icons = true
     if settings.social_facebook_link == blank and settings.social_instagram_link == blank and settings.social_youtube_link == blank and settings.social_tiktok_link == blank and settings.social_twitter_link == blank and settings.social_pinterest_link == blank and settings.social_snapchat_link == blank and settings.social_tumblr_link == blank and settings.social_vimeo_link == blank
@@ -53,7 +59,9 @@
       assign only_empty_brand = true
     endif
   -%}
-  {%- if section.blocks.size > 0
+  {%- if section.settings.layout_style == 'shades' -%}
+    {% render 'soy-footer-shades', section: section %}
+  {%- elsif section.blocks.size > 0
     or section.settings.newsletter_enable
     or section.settings.show_social
     or section.settings.enable_follow_on_shop
@@ -276,7 +284,7 @@
     {%- endunless -%}
   {%- endif -%}
 
-  <div class="footer__content-bottom">
+  <div class="footer__content-bottom{% if section.settings.layout_style == 'shades' %} footer__shades-bottom{% endif %}">
     <div class="footer__content-bottom-wrapper page-width">
       <div class="footer__column footer__localization isolate">
         {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
@@ -447,9 +455,16 @@
     </div>
     <div class="footer__content-bottom-wrapper page-width{% if section.settings.enable_country_selector == false and section.settings.enable_language_selector == false %} footer__content-bottom-wrapper--center{% endif %}">
       <div class="footer__copyright caption">
-        <small class="copyright__content"
-          >&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url -}}
-        </small>
+        {%- if section.settings.layout_style == 'shades' -%}
+          <small class="copyright__content"
+            >&copy; {{ 'now' | date: '%Y' }}
+            {{ shop.name | link_to: routes.root_url }}. All rights reserved.</small
+          >
+        {%- else -%}
+          <small class="copyright__content"
+            >&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url -}}
+          </small>
+        {%- endif -%}
         {% unless section.settings.branding_text == blank %}
           <small class="copyright__content">{{ section.settings.branding_text }}</small>
         {% endunless %}
@@ -1042,6 +1057,139 @@
     }
   ],
   "settings": [
+    {
+      "type": "select",
+      "id": "layout_style",
+      "label": "Footer layout",
+      "options": [
+        {
+          "value": "shades",
+          "label": "Shades of You (editorial)"
+        },
+        {
+          "value": "classic",
+          "label": "Classic (columns & blocks)"
+        }
+      ],
+      "default": "shades"
+    },
+    {
+      "type": "header",
+      "content": "Shades of You — content"
+    },
+    {
+      "type": "checkbox",
+      "id": "shades_show_pattern",
+      "label": "Show subtle background texture",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "shades_heading_contact",
+      "label": "Contact heading",
+      "default": "GET IN TOUCH"
+    },
+    {
+      "type": "text",
+      "id": "shades_phone",
+      "label": "Phone number",
+      "default": "+91 98765 43210",
+      "info": "Shown with WhatsApp icon when WhatsApp URL is set; otherwise uses a phone icon."
+    },
+    {
+      "type": "url",
+      "id": "shades_whatsapp_url",
+      "label": "WhatsApp chat link",
+      "info": "e.g. https://wa.me/919876543210 — used for the phone line and optional floating button."
+    },
+    {
+      "type": "text",
+      "id": "shades_email",
+      "label": "Email",
+      "default": "hello@shadesofyou.com"
+    },
+    {
+      "type": "text",
+      "id": "shades_newsletter_heading",
+      "label": "Newsletter heading",
+      "default": "WE'LL SLIP YOU THE GOOD STUFF FIRST"
+    },
+    {
+      "type": "text",
+      "id": "shades_newsletter_placeholder",
+      "label": "Newsletter placeholder",
+      "default": "Enter your email address"
+    },
+    {
+      "type": "text",
+      "id": "shades_heading_social",
+      "label": "Social heading",
+      "default": "SOCIAL"
+    },
+    {
+      "type": "checkbox",
+      "id": "shades_show_theme_social",
+      "label": "Show Instagram from theme settings",
+      "default": true
+    },
+    {
+      "type": "url",
+      "id": "shades_linkedin_url",
+      "label": "LinkedIn profile URL"
+    },
+    {
+      "type": "text",
+      "id": "shades_heading_sitemap",
+      "label": "Site map heading",
+      "default": "SITE MAP"
+    },
+    {
+      "type": "link_list",
+      "id": "shades_menu_sitemap",
+      "label": "Site map menu",
+      "info": "Horizontal row of links (e.g. Home, About, Care). Create a menu in Navigation if needed."
+    },
+    {
+      "type": "text",
+      "id": "shades_heading_quick",
+      "label": "Quick links heading",
+      "default": "QUICK LINKS"
+    },
+    {
+      "type": "text",
+      "id": "shades_menu_quick_handle",
+      "label": "Quick links menu handle",
+      "info": "Only one menu picker is allowed in footer settings, so enter the handle of a second menu from Online store > Navigation (e.g. policy-menu or footer-policies).",
+      "placeholder": "policy-menu"
+    },
+    {
+      "type": "text",
+      "id": "shades_heading_reach",
+      "label": "Address heading",
+      "default": "REACH US"
+    },
+    {
+      "type": "richtext",
+      "id": "shades_address",
+      "label": "Address",
+      "default": "<p>123 Style Lane, Mumbai, India</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "shades_show_whatsapp_float",
+      "label": "Show floating WhatsApp button",
+      "default": false
+    },
+    {
+      "type": "url",
+      "id": "shades_whatsapp_float_url",
+      "label": "Floating WhatsApp URL",
+      "info": "Usually same as WhatsApp chat link."
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.colors.label"
+    },
     {
       "type": "select",
       "id": "color_scheme",

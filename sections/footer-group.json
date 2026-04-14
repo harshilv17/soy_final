@@ -1,1 +1,45 @@
-{"name":"t:sections.footer.name","type":"footer","sections":{"footer":{"type":"footer","blocks":{"link_list_Myq89J":{"type":"link_list","settings":{"heading":"Customer Care","menu":"footer","width_desktop":4,"width_mobile":"1"}}},"block_order":["link_list_Myq89J"],"settings":{"color_scheme":"accent-1","enable_follow_on_shop":false,"show_social":true,"enable_country_selector":false,"enable_language_selector":false,"payment_enable":false,"enabled_payment_types":"","show_policy":false,"branding_text":"","margin_top":0,"padding_top":32,"padding_bottom":20}}},"order":["footer"]}
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {},
+      "block_order": [],
+      "settings": {
+        "layout_style": "shades",
+        "shades_show_pattern": true,
+        "shades_heading_contact": "GET IN TOUCH",
+        "shades_phone": "+91 98765 43210",
+        "shades_whatsapp_url": "",
+        "shades_email": "hello@shadesofyou.com",
+        "shades_newsletter_heading": "WE'LL SLIP YOU THE GOOD STUFF FIRST",
+        "shades_newsletter_placeholder": "Enter your email address",
+        "shades_heading_social": "SOCIAL",
+        "shades_show_theme_social": true,
+        "shades_linkedin_url": "",
+        "shades_heading_sitemap": "SITE MAP",
+        "shades_menu_sitemap": "footer",
+        "shades_heading_quick": "QUICK LINKS",
+        "shades_menu_quick_handle": "",
+        "shades_heading_reach": "REACH US",
+        "shades_address": "<p>123 Style Lane, Mumbai, India</p>",
+        "shades_show_whatsapp_float": false,
+        "shades_whatsapp_float_url": "",
+        "color_scheme": "accent-1",
+        "enable_follow_on_shop": false,
+        "show_social": true,
+        "enable_country_selector": false,
+        "enable_language_selector": false,
+        "payment_enable": false,
+        "enabled_payment_types": "",
+        "show_policy": false,
+        "branding_text": "",
+        "margin_top": 0,
+        "padding_top": 48,
+        "padding_bottom": 28
+      }
+    }
+  },
+  "order": ["footer"]
+}

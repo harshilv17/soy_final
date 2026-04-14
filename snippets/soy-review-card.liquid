@@ -1,0 +1,64 @@
+{% comment %}
+  Single review card for ds-review-carousel.
+  @param block {Object}
+  @param section {Object}
+  @param index {Number}
+{% endcomment %}
+
+<div class="ds-review-carousel__card">
+  {%- if section.settings.show_corner_pattern -%}
+    <div class="ds-review-carousel__patterns" aria-hidden="true">
+      <span class="ds-review-carousel__pattern ds-review-carousel__pattern--tl"></span>
+      <span class="ds-review-carousel__pattern ds-review-carousel__pattern--bl"></span>
+    </div>
+  {%- endif -%}
+
+  <div class="ds-review-carousel__media">
+    <div class="ds-review-carousel__media-inner">
+      {%- if block.settings.image != blank -%}
+        {%- assign card_alt = block.settings.image.alt | default: 'Customer review' -%}
+        {{
+          block.settings.image
+          | image_url: width: 1200
+          | image_tag:
+            loading: 'lazy',
+            sizes: '(min-width: 750px) 50vw, 100vw',
+            widths: '375, 550, 750, 1100, 1200',
+            alt: card_alt
+        }}
+      {%- else -%}
+        {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+      {%- endif -%}
+    </div>
+  </div>
+
+  <div class="ds-review-carousel__body">
+    {%- assign r = block.settings.rating | default: 5 | plus: 0 -%}
+    {%- if r < 1 -%}
+      {%- assign r = 1 -%}
+    {%- endif -%}
+    {%- if r > 5 -%}
+      {%- assign r = 5 -%}
+    {%- endif -%}
+    <ul class="ds-review-carousel__stars" role="presentation">
+      {%- for i in (1..5) -%}
+        <li>{% if i <= r %}★{% else %}☆{% endif %}</li>
+      {%- endfor -%}
+    </ul>
+
+    {%- if block.settings.headline != blank -%}
+      <h3 class="ds-review-carousel__headline">“{{ block.settings.headline | escape }}”</h3>
+    {%- endif -%}
+
+    {%- if block.settings.text != blank -%}
+      <div class="ds-review-carousel__text rte">{{ block.settings.text }}</div>
+    {%- endif -%}
+
+    {%- if block.settings.author_name != blank -%}
+      <p class="ds-review-carousel__author-name">{{ block.settings.author_name | escape }}</p>
+    {%- endif -%}
+    {%- if block.settings.author_title != blank -%}
+      <p class="ds-review-carousel__author-title">{{ block.settings.author_title | escape }}</p>
+    {%- endif -%}
+  </div>
+</div>
