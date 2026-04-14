@@ -1,0 +1,26 @@
+{% comment %}
+  Modern Heirloom — shared CSS variables (Horizon-style names map to Dawn fonts in theme.liquid :root).
+{% endcomment %}
+{% style %}
+  :root {
+    --font-body--family: var(--font-body-family);
+    --font-heading--family: var(--font-heading-family);
+    --font-subheading--family: var(--font-body-family);
+
+    --announcement-bar-font-size: 0.6875rem;
+    --announcement-bar-letter-spacing: 0.1em;
+
+    --header-nav-font-family: var(--font-heading--family);
+    --header-nav-font-size: 1rem;
+    --header-nav-font-weight: 400;
+  }
+
+  /* Main nav: Manrope (heading font stack). Set --header-nav-font-size to 1.125rem here if you prefer the larger step. */
+  @media screen and (min-width: 990px) {
+    .header__inline-menu .header__menu-item {
+      font-family: var(--header-nav-font-family);
+      font-size: var(--header-nav-font-size);
+      font-weight: var(--header-nav-font-weight);
+    }
+  }
+{% endstyle %}

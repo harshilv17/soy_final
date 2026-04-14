@@ -11,82 +11,39 @@
   "name": "t:sections.header.name",
   "type": "header",
   "sections": {
-    "announcement-bar": {
+    "header_announcements_9jGBFp": {
       "type": "announcement-bar",
       "blocks": {
-        "announcement-bar-0": {
+        "announcement_BxgCk9": {
           "type": "announcement",
           "settings": {
-            "text": "Welcome to our store",
+            "text": "FREE SHIPPING ON ORDERS ABOVE ₹999 · COD AVAILABLE",
             "text_alignment": "center",
-            "color_scheme": "accent-1",
+            "color_scheme": "scheme-4",
             "link": ""
           }
         }
       },
       "block_order": [
-        "announcement-bar-0"
+        "announcement_BxgCk9"
       ],
-      "disabled": true,
       "settings": {}
     },
-    "2c2ec774-3430-481f-b927-e9c035b9d24e": {
-      "type": "ds-horizontal-ticker",
-      "blocks": {
-        "sections--18060430639399__2c2ec774-3430-481f-b927-e9c035b9d24e-1679250655d32e639c-0": {
-          "type": "text",
-          "settings": {
-            "title": "10% OFF TODAY ONLY"
-          }
-        },
-        "sections--18060430639399__2c2ec774-3430-481f-b927-e9c035b9d24e-1679250655d32e639c-1": {
-          "type": "text",
-          "settings": {
-            "title": ""
-          }
-        },
-        "sections--18060430639399__2c2ec774-3430-481f-b927-e9c035b9d24e-1679250655d32e639c-2": {
-          "type": "text",
-          "settings": {
-            "title": "Free Shipping"
-          }
-        }
-      },
-      "block_order": [
-        "sections--18060430639399__2c2ec774-3430-481f-b927-e9c035b9d24e-1679250655d32e639c-0",
-        "sections--18060430639399__2c2ec774-3430-481f-b927-e9c035b9d24e-1679250655d32e639c-1",
-        "sections--18060430639399__2c2ec774-3430-481f-b927-e9c035b9d24e-1679250655d32e639c-2"
-      ],
-      "settings": {
-        "speed": 2.5,
-        "text_spacing": 1.5,
-        "text_size": "1.5",
-        "italic_text": true,
-        "uppercase_text": true,
-        "bold_text": true,
-        "color_scheme": "custom",
-        "padding_top": 16,
-        "padding_bottom": 16,
-        "custom_colors_background": "#3b2314",
-        "custom_gradient_background": "",
-        "custom_colors_text": "#f7f3eb"
-      }
-    },
-    "header": {
+    "header_section": {
       "type": "header",
       "settings": {
-        "sticky_header_type": "none",
-        "show_line_separator": true,
-        "color_scheme": "background-2",
+        "sticky_header_type": "always",
+        "show_line_separator": false,
+        "color_scheme": "scheme-1",
         "logo_link": "/",
-        "logo_position": "middle-left",
+        "logo_position": "middle-center",
         "menu": "main-menu",
         "menu_type_desktop": "dropdown",
         "highlight_active_link": true,
         "highlighted_link_color_scheme": "accent-1",
         "mobile_menu_title": "Menu",
         "secondary_menu": "",
-        "menu_color_scheme": "accent-1",
+        "menu_color_scheme": "scheme-2",
         "mobile_logo_position": "center",
         "display_search": true,
         "margin_bottom": 0,
@@ -96,8 +53,7 @@
     }
   },
   "order": [
-    "announcement-bar",
-    "2c2ec774-3430-481f-b927-e9c035b9d24e",
-    "header"
+    "header_announcements_9jGBFp",
+    "header_section"
   ]
 }
