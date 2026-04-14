@@ -22,7 +22,7 @@
   font-weight: 400;
   text-transform: none;
   letter-spacing: 0.03em;
-  color: rgb(var(--color-foreground));
+  color: #3b2314;
   white-space: nowrap;
   /* Larger min + vw so “Customer Favourites” stays readable on small screens (Dawn uses scaled rem) */
   font-size: clamp(1.35rem, 3vw, 2rem);
@@ -45,7 +45,7 @@
   line-height: 1;
   letter-spacing: 0.02em;
   text-transform: none;
-  color: #6f5e52;
+  color: #b99684;
   white-space: nowrap;
   flex-shrink: 0;
 }
