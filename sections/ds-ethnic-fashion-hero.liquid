@@ -1,0 +1,328 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@300&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+
+{%- style -%}
+  .ds-ethnic-hero-{{ section.id }} {
+    display: block;
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    box-sizing: border-box;
+    position: relative;
+    min-height: {{ section.settings.min_height }}vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #f7f3eb;
+  }
+
+  .ds-ethnic-hero__container-{{ section.id }} {
+    width: 100%;
+    max-width: 100%;
+    min-height: {{ section.settings.min_height }}vh;
+    box-sizing: border-box;
+    display: flex;
+    align-items: flex-end;
+    padding: 40px;
+  }
+
+  .ds-ethnic-hero__content-{{ section.id }} {
+    width: 100%;
+    max-width: 600px;
+    padding-bottom: 40px;
+  }
+
+  .ds-ethnic-hero__headline-{{ section.id }} {
+    margin: 0 0 16px;
+    font-family: 'Noto Serif', serif;
+    font-weight: 300;
+    font-size: {{ section.settings.headline_size }}px;
+    line-height: 1.2;
+    color: #1a1a1a;
+  }
+
+  .ds-ethnic-hero__subtext-{{ section.id }} {
+    margin: 0 0 32px;
+    font-family: 'Manrope', sans-serif;
+    font-size: {{ section.settings.subtext_size }}px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #1a1a1a;
+  }
+
+  .ds-ethnic-hero__buttons-{{ section.id }} {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .ds-ethnic-hero__button-{{ section.id }} {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    cursor: pointer;
+    font-family: 'Manrope', sans-serif;
+    font-size: {{ section.settings.button_text_size }}px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 14px 32px;
+    border-radius: {{ section.settings.button_border_radius }}px;
+    transition: all 0.25s ease;
+    box-sizing: border-box;
+  }
+
+  .ds-ethnic-hero__button--filled-{{ section.id }} {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    border: 1px solid #1a1a1a;
+  }
+
+  .ds-ethnic-hero__button--filled-{{ section.id }}:hover {
+    background-color: #000000;
+    border-color: #000000;
+    color: #ffffff;
+  }
+
+  .ds-ethnic-hero__button--ghost-{{ section.id }} {
+    background-color: transparent;
+    color: #1a1a1a;
+    border: 1px solid #1a1a1a;
+  }
+
+  .ds-ethnic-hero__button--ghost-{{ section.id }}:hover {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    border-color: #1a1a1a;
+  }
+
+  .ds-ethnic-hero__placeholder-{{ section.id }} {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f7f3eb;
+  }
+
+  .ds-ethnic-hero__placeholder-{{ section.id }} svg {
+    width: 100%;
+    height: 100%;
+    max-width: 600px;
+    max-height: 400px;
+    opacity: 0.3;
+  }
+
+  .ds-ethnic-hero__empty-state-{{ section.id }} {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 24px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.9);
+    font-family: 'Manrope', sans-serif;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ds-ethnic-hero__container-{{ section.id }} {
+      padding: 24px;
+    }
+
+    .ds-ethnic-hero__content-{{ section.id }} {
+      padding-bottom: 24px;
+    }
+
+    .ds-ethnic-hero__headline-{{ section.id }} {
+      font-size: {{ section.settings.headline_size | times: 0.6 }}px;
+    }
+
+    .ds-ethnic-hero__subtext-{{ section.id }} {
+      font-size: {{ section.settings.subtext_size | times: 0.9 }}px;
+      margin-bottom: 24px;
+    }
+
+    .ds-ethnic-hero__buttons-{{ section.id }} {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .ds-ethnic-hero__button-{{ section.id }} {
+      width: 100%;
+      text-align: center;
+      font-size: {{ section.settings.button_text_size | times: 0.9 }}px;
+      padding: 12px 24px;
+    }
+  }
+{%- endstyle -%}
+
+<section
+  class="ds-ethnic-hero-{{ section.id }}"
+  {% if section.settings.hero_image != blank %}
+    style="background-image: url('{{ section.settings.hero_image | image_url: width: 3200 }}');"
+  {% endif %}
+>
+  {% unless section.settings.hero_image %}
+    <div class="ds-ethnic-hero__placeholder-{{ section.id }}">
+      {{ 'hero-apparel-1' | placeholder_svg_tag }}
+      <div class="ds-ethnic-hero__empty-state-{{ section.id }}">
+        Add a hero image to get started
+      </div>
+    </div>
+  {% endunless %}
+
+  <div class="ds-ethnic-hero__container-{{ section.id }}">
+    <div class="ds-ethnic-hero__content-{{ section.id }}">
+      {% if section.settings.headline != blank %}
+        <h1 class="ds-ethnic-hero__headline-{{ section.id }}">{{ section.settings.headline | escape }}</h1>
+      {% endif %}
+
+      {% if section.settings.subtext != blank %}
+        <p class="ds-ethnic-hero__subtext-{{ section.id }}">{{ section.settings.subtext | escape }}</p>
+      {% endif %}
+
+      <div class="ds-ethnic-hero__buttons-{{ section.id }}">
+        {% if section.settings.filled_button_label != blank %}
+          <a
+            class="ds-ethnic-hero__button-{{ section.id }} ds-ethnic-hero__button--filled-{{ section.id }}"
+            {% if section.settings.filled_button_link != blank %}
+              href="{{ section.settings.filled_button_link }}"
+            {% else %}
+              role="link"
+              aria-disabled="true"
+            {% endif %}
+          >
+            {{ section.settings.filled_button_label | escape }}
+          </a>
+        {% endif %}
+
+        {% if section.settings.ghost_button_label != blank %}
+          <a
+            class="ds-ethnic-hero__button-{{ section.id }} ds-ethnic-hero__button--ghost-{{ section.id }}"
+            {% if section.settings.ghost_button_link != blank %}
+              href="{{ section.settings.ghost_button_link }}"
+            {% else %}
+              role="link"
+              aria-disabled="true"
+            {% endif %}
+          >
+            {{ section.settings.ghost_button_label | escape }}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "DS Ethnic Fashion Hero",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image"
+    },
+    {
+      "type": "range",
+      "id": "min_height",
+      "label": "Minimum height",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "vh",
+      "default": 85
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "Timeless Elegance"
+    },
+    {
+      "type": "range",
+      "id": "headline_size",
+      "label": "Headline size",
+      "min": 24,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 56
+    },
+    {
+      "type": "text",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "Discover our curated collection of ethnic fashion"
+    },
+    {
+      "type": "range",
+      "id": "subtext_size",
+      "label": "Subtext size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "text",
+      "id": "filled_button_label",
+      "label": "Filled button label",
+      "default": "SHOP NEW →"
+    },
+    {
+      "type": "url",
+      "id": "filled_button_link",
+      "label": "Filled button link"
+    },
+    {
+      "type": "text",
+      "id": "ghost_button_label",
+      "label": "Ghost button label",
+      "default": "EXPLORE COLLECTIONS"
+    },
+    {
+      "type": "url",
+      "id": "ghost_button_link",
+      "label": "Ghost button link"
+    },
+    {
+      "type": "range",
+      "id": "button_text_size",
+      "label": "Button text size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Button border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 4
+    }
+  ],
+  "presets": [
+    {
+      "name": "DS Ethnic Fashion Hero"
+    }
+  ]
+}
+{% endschema %}

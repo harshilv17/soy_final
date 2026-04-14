@@ -1,0 +1,94 @@
+{%- liquid
+  assign show_story = false
+  if request.page_type == 'index'
+    assign show_story = true
+  elsif request.page_type == 'page' and page and page.handle == 'about-us'
+    assign show_story = true
+  endif
+-%}
+
+{%- if show_story -%}
+  {%- style -%}
+    .ds-story-of-batik {
+      background: #f5f1e8;
+    }
+
+    .ds-story-of-batik__inner {
+      max-width: 88rem;
+      margin: 0 auto;
+      padding: 3.2rem 2rem 4rem;
+    }
+
+    .ds-story-of-batik__heading {
+      margin: 0 0 1.2rem;
+      color: #3b2314;
+      font-size: clamp(2.4rem, 3.6vw, 3.8rem);
+      line-height: 1.15;
+      text-align: center;
+    }
+
+    .ds-story-of-batik__text {
+      color: #3b2314;
+      font-size: 1.7rem;
+      line-height: 1.7;
+      max-width: 72ch;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .ds-story-of-batik__text p {
+      margin: 0;
+    }
+
+    .ds-story-of-batik__text p + p {
+      margin-top: 1.2rem;
+    }
+
+    @media screen and (max-width: 749px) {
+      .ds-story-of-batik__inner {
+        padding: 2.6rem 1.6rem 3rem;
+      }
+
+      .ds-story-of-batik__text {
+        font-size: 1.55rem;
+        text-align: left;
+      }
+    }
+  {%- endstyle -%}
+
+  <section class="ds-story-of-batik" aria-label="Story of Batik">
+    <div class="ds-story-of-batik__inner">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="ds-story-of-batik__heading">{{ section.settings.heading | escape }}</h2>
+      {%- endif -%}
+      {%- if section.settings.text != blank -%}
+        <div class="ds-story-of-batik__text rte">{{ section.settings.text }}</div>
+      {%- endif -%}
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "DS Story of Batik",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Story of Batik"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Content",
+      "default": "<p>Batik is a heritage craft passed through generations, where every motif is hand-drawn with care and meaning. From wax-resist artistry to patient dyeing, each piece reflects stories of culture, craftsmanship, and community.</p><p>At Shades of You, we celebrate this tradition by working with artisan-led practices and preserving the beauty of handmade textiles in every creation.</p>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "DS Story of Batik"
+    }
+  ]
+}
+{% endschema %}
